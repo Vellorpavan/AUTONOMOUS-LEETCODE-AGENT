@@ -67,11 +67,7 @@
 - [🏗️ Architecture](#️-architecture)
 - [📁 Project Structure](#-project-structure)
 - [⚡ Quickstart](#-quickstart)
-- [🔧 Prerequisites](#-prerequisites)
-- [🍪 Getting Your LeetCode Cookies](#-getting-your-leetcode-cookies)
-- [🔑 Getting Your Anthropic API Key](#-getting-your-anthropic-api-key)
-- [⚙️ Configuration](#️-configuration)
-- [🚀 Running the Agent](#-running-the-agent)
+- [💻 Usage](#-usage)
 - [🛠️ MCP Server — Tool Reference](#️-mcp-server--tool-reference)
 - [🤖 Agent System Prompt](#-agent-system-prompt)
 - [📊 Session Logs](#-session-logs)
@@ -229,150 +225,85 @@ AUTONOMOUS-LEETCODE-AGENT/
 
 ## ⚡ Quickstart
 
-> Full setup in under 5 minutes.
-
+**Step 1 — Clone the repo**
 ```bash
-# 1. Clone the repo
 git clone https://github.com/Vellorpavan/AUTONOMOUS-LEETCODE-AGENT.git
 cd AUTONOMOUS-LEETCODE-AGENT
+```
 
-# 2. Run setup (installs everything, builds MCP server)
+**Step 2 — Install everything**
+```bash
 ./run.sh setup
+```
+This installs Node.js dependencies, compiles the TypeScript MCP server, creates a Python virtual environment, and installs Python packages.
 
-# 3. Add your credentials
+**Step 3 — Get your LeetCode cookies**
+Your agent authenticates using your browser session. LeetCode does not provide a public API key, so this is the standard approach.
+
+1. Log into leetcode.com in Chrome or Firefox
+2. Press `F12` to open Developer Tools
+3. Click the **Application** tab (Chrome) or **Storage** tab (Firefox)
+4. In the left sidebar: **Cookies** → `https://leetcode.com`
+5. Find and copy these two values:
+
+| Cookie Name | What it looks like |
+|---|---|
+| `LEETCODE_SESSION` | Very long string, 200+ chars, starts with `eyJ...` |
+| `csrftoken` | Shorter string, ~32 chars |
+
+⚠️ *These cookies expire every 2–4 weeks. If the agent stops authenticating, repeat this step to get fresh cookies.*
+
+**Step 4 — Configure credentials**
+```bash
 cp agent/.env.example agent/.env
-nano agent/.env          # paste your keys (see sections below)
+```
 
-# 4. Launch the agent
+Open `agent/.env` and fill in your values:
+```env
+# Anthropic API — get from https://console.anthropic.com/settings/keys
+ANTHROPIC_API_KEY=sk-ant-your-key-here
+
+# LeetCode cookies — from your browser (see Step 3)
+LEETCODE_SESSION=eyJ0eXAiOiJKV1Q...your-long-session-here
+LEETCODE_CSRF_TOKEN=your-csrf-token-here
+
+# Agent settings
+DEFAULT_LANG=python3       # python3 | javascript | java | cpp
+MAX_RETRIES=3              # attempts per problem before moving on
+```
+
+**Step 5 — Run**
+```bash
 ./run.sh solve-all
 ```
-
-That's it. The agent takes over from here.
-
----
-
-## 🔧 Prerequisites
-
-| Tool | Version | Check | Install |
-|---|---|---|---|
-| **Node.js** | 18+ | `node --version` | [nodejs.org](https://nodejs.org) |
-| **npm** | any | `npm --version` | included with Node.js |
-| **Python** | 3.10+ | `python3 --version` | [python.org](https://python.org) |
-| **Git** | any | `git --version` | [git-scm.com](https://git-scm.com) |
+That's it. The agent runs until every unsolved problem is attempted.
 
 ---
 
-## 🍪 Getting Your LeetCode Cookies
-
-The agent authenticates using your browser session. Here's exactly how to get the cookies:
-
-<details>
-<summary><b>🖥️ Chrome / Edge (Recommended) — Click to expand</b></summary>
-
-**Step 1** — Log into [leetcode.com](https://leetcode.com)
-
-**Step 2** — Press `F12` to open DevTools
-
-**Step 3** — Click the **Application** tab
-
-**Step 4** — In the left sidebar: **Storage** → **Cookies** → `https://leetcode.com`
-
-**Step 5** — Find these two rows in the cookie table:
-
-| Cookie Name | What it looks like | Length |
-|---|---|---|
-| `LEETCODE_SESSION` | `eyJ0eXAiOiJKV1QiLCJ...` | ~200+ chars |
-| `csrftoken` | `abc123xyz789def...` | ~32 chars |
-
-**Step 6** — Click each one → the full value shows at the bottom of the panel → right-click → **Copy**
-
-> ⚠️ **Cookies expire every 2–4 weeks.** If the agent says "not authenticated", repeat this step.
-
-</details>
-
-<details>
-<summary><b>🦊 Firefox — Click to expand</b></summary>
-
-**Step 1** — Log into [leetcode.com](https://leetcode.com)
-
-**Step 2** — Press `F12` → click the **Storage** tab (not Application)
-
-**Step 3** — Expand **Cookies** → click `https://leetcode.com`
-
-**Step 4** — Find `LEETCODE_SESSION` and `csrftoken` — same as above
-
-</details>
-
----
-
-## 🔑 Getting Your Anthropic API Key
-
-1. Go to [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys)
-2. Click **Create Key** → give it a name like `leetcode-agent`
-3. Copy the key — it starts with `sk-ant-api03-...`
-4. Paste it into your `.env` file
-
-> 💡 The agent uses **Claude Opus 4** for maximum problem-solving accuracy. Check [Anthropic's pricing page](https://www.anthropic.com/pricing) for current rates.
-
----
-
-## ⚙️ Configuration
-
-Edit `agent/.env`:
-
-```env
-# ── Anthropic ─────────────────────────────────────────────────
-ANTHROPIC_API_KEY=sk-ant-api03-your-key-here
-
-# ── LeetCode Session (from your browser cookies) ──────────────
-LEETCODE_SESSION=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
-LEETCODE_CSRF_TOKEN=your_csrftoken_value_here
-
-# ── Agent Behaviour ───────────────────────────────────────────
-DEFAULT_LANG=python3       # python3 | javascript | java | cpp
-MAX_RETRIES=4              # max attempts per problem before moving on
-
-# ── MCP Server Path ───────────────────────────────────────────
-MCP_SERVER_PATH=../mcp-server/dist/index.js
-```
-
-### Language options
-
-| Value | Language |
-|---|---|
-| `python3` | Python 3 (default, recommended) |
-| `javascript` | JavaScript (ES6+) |
-| `typescript` | TypeScript |
-| `java` | Java |
-| `cpp` | C++ |
-| `golang` | Go |
-| `rust` | Rust |
-
----
-
-## 🚀 Running the Agent
+## 💻 Usage
 
 ```bash
-# ── Solve everything ──────────────────────────────────────────
-./run.sh solve-all
+# ── Core Commands ──────────────────────────────────────────────────
 
-# ── Solve by difficulty ───────────────────────────────────────
-./run.sh solve-easy           # All Easy problems first
-./run.sh solve-medium         # All Medium problems
-./run.sh solve-hard           # All Hard problems
+./run.sh solve-all          # Solve ALL unsolved problems (full grind)
+./run.sh solve-easy         # Only Easy problems
+./run.sh solve-medium       # Only Medium problems
+./run.sh solve-hard         # Only Hard problems
 
-# ── Solve one specific problem ────────────────────────────────
+# ── Specific Problem ───────────────────────────────────────────────
+
 ./run.sh solve two-sum
 ./run.sh solve longest-substring-without-repeating-characters
 ./run.sh solve median-of-two-sorted-arrays
 
-# ── Advanced flags ────────────────────────────────────────────
+# ── Advanced Options ───────────────────────────────────────────────
+
 cd agent && source venv/bin/activate
 
-python3 agent.py --limit 20               # Solve next 20 unsolved
-python3 agent.py --lang javascript        # Use JavaScript
-python3 agent.py --difficulty MEDIUM      # Medium only
-python3 agent.py --slug trapping-rain-water --lang cpp  # One problem in C++
+python3 agent.py --lang javascript     # Use JavaScript
+python3 agent.py --limit 50            # Stop after 50 problems
+python3 agent.py --difficulty MEDIUM   # Only mediums
+python3 agent.py --slug two-sum        # One specific problem 
 ```
 
 ### What you see while it runs
