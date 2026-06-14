@@ -42,7 +42,6 @@
 <br/>
 
 <!-- DEMO VIDEO PLACEHOLDER -->
-[![Watch the video](https://crv.moe/play?video=hFbV2DI4xHM)](https://www.youtube.com/watch?v=hFbV2DI4xHM)
 ### 📺 [Click to Watch] Autonomous LeetCode Agent in Action!
 [![AUTONOMOUS-LEETCODE-AGENT](https://img.youtube.com/vi/hFbV2DI4xHM/maxresdefault.jpg)](https://www.youtube.com/watch?v=hFbV2DI4xHM)
 <a href="https://www.youtube.com/watch?v=hFbV2DI4xHM">
