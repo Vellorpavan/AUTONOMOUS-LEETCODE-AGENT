@@ -79,7 +79,6 @@
 - [🐛 Troubleshooting](#-troubleshooting)
 - [🗺️ Roadmap](#️-roadmap)
 - [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
 
 </details>
 
@@ -749,6 +748,8 @@ pip install -r requirements.txt
 
 ## 🤝 Contributing
 
+**Project Details:** This is a real, working project developed with significant engineering hours to autonomously solve problems on LeetCode. *(Note: This project is proprietary and does not have an open-source license.)*
+
 Contributions are welcome! Here's how:
 
 ```bash
@@ -764,32 +765,6 @@ git commit -m "feat: your feature description"
 git push origin feature/your-feature-name
 
 # Open a Pull Request on GitHub
-```
-
-**Good first issues:**
-- Add support for a new programming language
-- Add a web dashboard for real-time monitoring
-- Improve the retry logic for a specific verdict type
-- Write tests for MCP tools
-
----
-
-## 📄 License
-
-```
-MIT License
-
-Copyright (c) 2024 Vellorpavan
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
 ```
 
 ---
