@@ -1,0 +1,25 @@
+{
+  "name": "leetcode-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP Server exposing LeetCode tools to the autonomous agent",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.5",
+    "html-to-text": "^9.0.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/html-to-text": "^9.0.4",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

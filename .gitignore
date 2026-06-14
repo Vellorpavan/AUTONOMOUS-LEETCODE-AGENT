@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+*.log
+agent/logs/*.log
+agent/logs/*.jsonl
+__pycache__/
+*.pyc
+.DS_Store
