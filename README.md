@@ -197,7 +197,7 @@ You
 ## 📁 Project Structure
 
 ```
-leetcode-agent/
+AUTONOMOUS-LEETCODE-AGENT/
 │
 ├── 📂 mcp-server/                  ← Custom MCP Server (TypeScript)
 │   ├── 📂 src/
@@ -219,10 +219,8 @@ leetcode-agent/
 │   ├── 📄 .env.example             ← Config template
 │   ├── 📄 .env                     ← Your credentials (never commit!)
 │   └── 📂 logs/                    ← JSON session logs
-│       └── 📄 session_YYYYMMDD.json
 │
 ├── 📄 run.sh                       ← One-click setup & run script
-├── 📄 claude_desktop_config.json   ← Claude Desktop MCP config
 ├── 📄 .gitignore
 └── 📄 README.md                    ← You are here
 ```
