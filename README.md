@@ -42,6 +42,7 @@
 <br/>
 
 <!-- DEMO VIDEO PLACEHOLDER -->
+[![AUTONOMOUS-LEETCODE-AGENT](https://img.youtube.com/vi/hFbV2DI4xHM/0.jpg)](https://www.youtube.com/watch?v=hFbV2DI4xHM)
 <a href="https://www.youtube.com/watch?v=hFbV2DI4xHM">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=500&color=00D9FF&center=true&vCenter=true&multiline=true&width=600&height=80&lines=▶+Watch+Demo+Video;Agent+solving+3000%2B+problems+autonomously" alt="Demo Video"/>
 </a>
