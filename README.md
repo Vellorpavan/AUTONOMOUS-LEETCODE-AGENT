@@ -50,8 +50,6 @@
 
 <br/><br/>
 
-[![Demo Video](https://img.shields.io/badge/▶%20Watch%20Full%20Demo-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=hFbV2DI4xHM)
-
 </div>
 
 ---
